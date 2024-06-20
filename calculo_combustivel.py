@@ -17,9 +17,7 @@ sleep(1)
 print ('Agora vou fazer o calculo para saber qual combustivel escolher!')
 sleep(1)
 
-# contadores com loop para forçar usuario por certo
-
-
+# contadores com loop para forçar usuario por corretamente
 
 while True:
     try:
@@ -29,6 +27,7 @@ while True:
         break                                       # Sai do loop se o valor for válido
 
         # Se não for possivel converter as string em decimal vai dar o erro:
+        
     except ValueError:                              
         print("Valor inválido! Por favor, digite um número válido para o preço do Álcool.")
 
