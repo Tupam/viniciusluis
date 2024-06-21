@@ -33,7 +33,7 @@ while True:
 
 while True:
     try:
-        gasolina_str = input('E qual é o Valor do litro da Gasolina? ').strip()
+        gasolina_str = input('E qual é o valor do litro da Gasolina? ').strip()
         gasolina_str = gasolina_str.replace(',', '.')
         gasolina = float(gasolina_str)
         break  
@@ -63,8 +63,8 @@ sleep(1)
 
 # Loop para forçar a escolha correta aceitando somente 1 letra
 
-escolha = ' '
-valor = 0
+escolha = combustivel_escolhido = ' '
+total_viagem = 0
 
 while True:
     escolha = str(input('Deseja continuar ou posso encerrar o programa S/N?: ')).strip().lower()[0]
@@ -73,31 +73,54 @@ while True:
         break
 
     elif escolha == 's':
-        distancia = float(input('Digite a dinstancia em KM: '))
-        KmPorLitro = float(input('Quantos KM seu veiculo faz por litro? '))
+        while True:
+            combustivel_escolhido_str = str(input('Qual combustivel deseja [A/G]?')).strip().lower()[0]
+
+            # Escolha de combustivel
+
+            if combustivel_escolhido_str =='a':
+                combustivel_escolhido = alcool
+                break
+
+            elif combustivel_escolhido_str == 'g':
+                combustivel_escolhido = gasolina
+                break
+            else:
+                print('Escolha errada por favor escolha "A" para Alcool ou "G" para gasolina!')
+            
+        sleep(1)
+        while True:
+            try:
+                kmPorLitro_str = input('Quantos KM seu veiculo faz por litro? ').strip()
+                kmPorLitro_str = kmPorLitro_str.replace(',', '.')
+                kmPorLitro = float(kmPorLitro_str)
+                break  
+            except ValueError:
+                print("Valor inválido! Por favor, digite um número válido para a distância em litros por KM.")
+
+        while True:
+            try:
+                distancia_str = input('Qual a distancia em KMs pretende ir? ').strip()
+                distancia_str = distancia_str.replace(',', '.')
+                distancia = float(distancia_str)
+                break  
+            except ValueError:
+                print("Valor inválido! Por favor, digite um número válido para a distância em KMs.")
+          
         sleep(1)
 
-        litros = distancia / KmPorLitro
+        #Calculo do combustivel escolhido
 
-        if resultado <= 0.70:
-            combustivel = 'Alcool'
-            valorComb = alcool
+        litros = distancia / kmPorLitro
+        total_viagem = litros * combustivel_escolhido
 
-        else:
-            combustivel = 'Gasolina'
-            valorComb = gasolina
+            #Resultados
 
-        # Calculo de gasto de litros vezes o preço do combustivel
-
-        valor = litros * valorComb
-
-        #Resultados
-
-        print(f'Você precisa de \033[4;36m{litros:.2f}\033[m litros de \033[4;36m{combustivel}\033[m para percorrer o seu destino')
+        print(f'Você precisa de \033[4;36m{litros:.2f}\033[m litros de \033[4;36m{combustivel_escolhido}\033[m para percorrer o seu destino')
         sleep(1)
-
-        print(f'Que vai dar um total de \033[4;33mR${valor:.2f}\033[m')
+        print(f'Que vai dar um total de \033[4;33mR${total_viagem:.2f}\033[m')
         break
+    
     else:
         print('Escolha errada, por favor digite novamente')
     
