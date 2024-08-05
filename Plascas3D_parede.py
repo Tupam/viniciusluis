@@ -19,7 +19,6 @@ def obter_valor(descricao):
         except ValueError:
             print(f"Valor incorreto! Por favor, digite um número válido para {descricao}.")
 linha()
-
 while True:
     altura_placa = obter_valor("Qual a altura da placa [m.cm]")
     largura_placa = obter_valor("Qual a largura da placa [m.cm]")
@@ -47,8 +46,6 @@ while True:
     elif resp != 'N':
         print('Resposta errada digite S ou N para processeguir!')
         sleep(2)
-
-
 
 linha()
 
